@@ -1,5 +1,6 @@
 package com.personapi.personapi.infrastructure.controller;
 
+import com.personapi.personapi.commons.exceptions.PersonNotFoundExcepetion;
 import com.personapi.personapi.domain.Person;
 import com.personapi.personapi.infrastructure.dto.MessageResponseDto;
 import com.personapi.personapi.infrastructure.dto.PersonDto;
@@ -35,4 +36,25 @@ public class PersonController {
     public List<PersonDto> getAll(){
         return personPort.findAll();
     }
+
+    @GetMapping("/{id}")
+    public PersonDto getPerson(@PathVariable Long id) throws PersonNotFoundExcepetion {
+        return personPort.findPersonById(id);
+    }
+
+    @PutMapping("/{id}")
+    public MessageResponseDto update(@PathVariable Long id, @RequestBody PersonDto personDto) throws PersonNotFoundExcepetion {
+
+        return personPort.update(id, personDto);
+    }
+
+
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deletePerson(@PathVariable Long id) throws PersonNotFoundExcepetion {
+        personPort.deleteById(id);
+    }
+
+
+
 }
