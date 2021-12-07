@@ -7,24 +7,19 @@ import com.personapi.personapi.infrastructure.dto.PersonDto;
 import com.personapi.personapi.infrastructure.mapper.PersonMapper;
 import com.personapi.personapi.infrastructure.port.PersonPort;
 import com.personapi.personapi.infrastructure.repository.PersonRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor(onConstructor = @__(@Autowired))
 public class PersonService implements PersonPort {
 
     private PersonRepository personRepository;
     private final PersonMapper personMapper = PersonMapper.INSTANCE;
-
-    @Autowired
-    public PersonService(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
-
 
     public MessageResponseDto createPerson(PersonDto personDto){
         Person personToSave = personMapper.toModel(personDto);
@@ -44,16 +39,12 @@ public class PersonService implements PersonPort {
         return personMapper.toDto(person);
     }
 
-
-
     public MessageResponseDto update(Long id, PersonDto personDto) throws PersonNotFoundExcepetion {
         verifyIfExists(id);
         Person personToUpdate = personMapper.toModel(personDto);
         Person updatedPerson = personRepository.save(personToUpdate);
         return creteMessageResponse(updatedPerson.getId(), "Updated person with Id: ");
     }
-
-
 
     public void deleteById(Long id) throws PersonNotFoundExcepetion {
         verifyIfExists(id);
