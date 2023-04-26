@@ -1,4 +1,4 @@
-package com.personapi.personapi.infrastructure.dto;
+package com.personapi.person.application.dto;
 
 import lombok.Builder;
 import lombok.Data;

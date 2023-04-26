@@ -1,5 +1,6 @@
-package com.personapi.personapi.domain;
+package com.personapi.person.domain.entity;
 
+import com.personapi.person.domain.enums.PhoneType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

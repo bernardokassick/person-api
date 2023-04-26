@@ -1,7 +1,7 @@
-package com.personapi.personapi.infrastructure.mapper;
+package com.personapi.person.application.mapper;
 
-import com.personapi.personapi.domain.Person;
-import com.personapi.personapi.infrastructure.dto.PersonDto;
+import com.personapi.person.domain.entity.Person;
+import com.personapi.person.application.dto.PersonDto;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

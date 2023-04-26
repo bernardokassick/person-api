@@ -1,12 +1,12 @@
-package com.personapi.personapi.commons.exceptions;
+package com.personapi.person.application.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.NOT_FOUND)
-public class PersonNotFoundExcepetion extends Exception {
+public class PersonNotFoundException extends Exception {
 
-    public PersonNotFoundExcepetion (Long id){
+    public PersonNotFoundException(Long id){
         super("Person not found with id: " + id);
     }
 }

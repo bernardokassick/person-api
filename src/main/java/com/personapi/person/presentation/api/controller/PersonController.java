@@ -1,11 +1,10 @@
-package com.personapi.personapi.infrastructure.controller;
+package com.personapi.person.presentation.api.controller;
 
-import com.personapi.personapi.commons.exceptions.PersonNotFoundExcepetion;
-import com.personapi.personapi.infrastructure.dto.MessageResponseDto;
-import com.personapi.personapi.infrastructure.dto.PersonDto;
-import com.personapi.personapi.infrastructure.port.PersonPort;
+import com.personapi.person.application.exception.PersonNotFoundException;
+import com.personapi.person.application.dto.MessageResponseDto;
+import com.personapi.person.application.dto.PersonDto;
+import com.personapi.person.application.action.PersonPort;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/people")
-@AllArgsConstructor(onConstructor = @__(@Autowired))
+@AllArgsConstructor()
 public class PersonController {
 
     private PersonPort personPort;
@@ -31,12 +30,12 @@ public class PersonController {
     }
 
     @GetMapping("/{id}")
-    public PersonDto getPerson(@PathVariable Long id) throws PersonNotFoundExcepetion {
+    public PersonDto getPerson(@PathVariable Long id) throws PersonNotFoundException {
         return personPort.findPersonById(id);
     }
 
     @PutMapping("/{id}")
-    public MessageResponseDto update(@PathVariable Long id, @RequestBody PersonDto personDto) throws PersonNotFoundExcepetion {
+    public MessageResponseDto update(@PathVariable Long id, @RequestBody PersonDto personDto) throws PersonNotFoundException {
 
         return personPort.update(id, personDto);
     }
@@ -44,7 +43,7 @@ public class PersonController {
 
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deletePerson(@PathVariable Long id) throws PersonNotFoundExcepetion {
+    public void deletePerson(@PathVariable Long id) throws PersonNotFoundException {
         personPort.deleteById(id);
     }
 
