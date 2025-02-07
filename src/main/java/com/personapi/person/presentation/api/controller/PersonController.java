@@ -1,8 +1,8 @@
 package com.personapi.person.presentation.api.controller;
 
+import com.personapi.person.application.dto.PersonDTO;
 import com.personapi.person.application.exception.PersonNotFoundException;
-import com.personapi.person.application.dto.MessageResponseDto;
-import com.personapi.person.application.dto.PersonDto;
+import com.personapi.person.application.dto.MessageResponseDTO;
 import com.personapi.person.application.action.PersonPort;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,22 +20,22 @@ public class PersonController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public MessageResponseDto createPerson(@RequestBody @Valid PersonDto personDto){
+    public MessageResponseDTO createPerson(@RequestBody @Valid PersonDTO personDto){
         return personPort.createPerson(personDto);
     }
 
     @GetMapping
-    public List<PersonDto> getAll(){
+    public List<PersonDTO> getAll(){
         return personPort.findAll();
     }
 
     @GetMapping("/{id}")
-    public PersonDto getPerson(@PathVariable Long id) throws PersonNotFoundException {
+    public PersonDTO getPerson(@PathVariable Long id) throws PersonNotFoundException {
         return personPort.findPersonById(id);
     }
 
     @PutMapping("/{id}")
-    public MessageResponseDto update(@PathVariable Long id, @RequestBody PersonDto personDto) throws PersonNotFoundException {
+    public MessageResponseDTO update(@PathVariable Long id, @RequestBody PersonDTO personDto) throws PersonNotFoundException {
 
         return personPort.update(id, personDto);
     }

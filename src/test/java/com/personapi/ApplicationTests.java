@@ -1,4 +1,4 @@
-package br.com.auttardigital.backoffice.chainstorems;
+package com.personapi;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

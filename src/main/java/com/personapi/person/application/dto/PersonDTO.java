@@ -15,7 +15,7 @@ import java.util.List;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class PersonDto {
+public class PersonDTO {
 
     private Long id;
 
@@ -36,7 +36,7 @@ public class PersonDto {
 
     @Valid
     @NotEmpty
-    private List<PhoneDto> phones;
+    private List<PhoneDTO> phones;
 
 
 
